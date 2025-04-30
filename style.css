@@ -1,30 +1,59 @@
 @font-face {
-    font-family: 'Satoshi';
-    src: url('fonts/Satoshi-Variable.ttf') format('truetype');
+    font-family: "Satoshi";
+    src: url("fonts/Satoshi-Variable.ttf") format("truetype");
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: white;
-    font-family: 'Satoshi';
+    font-family: "Satoshi";
+    scroll-behavior: smooth;
 }
 
 html,
 body {
     height: 100%;
     width: 100%;
+
+}
+
+.cursor {
+    height: 1vw;
+    width: 1vw;
+    border-radius: 50%;
+    position: fixed;
+    z-index: 8;
+    mix-blend-mode: difference;
+    transition: background-image 0.3s ease;
+    pointer-events: none;
+    background-position: center;
+    background-size: cover;
+}
+
+.purple {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 88;
+    position: fixed;
+    background-color: #b075b3;
+    display: none;
+    transition: opacity 0.3s ease;
 }
 
 .main {
     background-color: #030003;
+    cursor: none;
 }
 
 .page1 {
     min-height: 100vh;
     width: 100%;
-
+    position: relative;
+    z-index: 9;
+    padding-top: 12vw;
 }
 
 nav {
@@ -35,7 +64,10 @@ nav {
     align-items: center;
     padding: 0 30px;
     color: white;
-    cursor: pointer;
+    cursor: none;
+    position: fixed;
+    mix-blend-mode: difference;
+    z-index: 102;
 }
 
 nav h4 {
@@ -43,14 +75,14 @@ nav h4 {
     text-transform: uppercase;
 }
 
-/* nav h4:hover{
-    cursor: pointer;
-    color: #111;
-    transition: 0.3s ease-in-out;
-} */
-nav h4:nth-child(1) {
+nav h4:hover {
+    cursor: none;
     border-bottom: 2px solid white;
 }
+
+/* nav h4:nth-child(1) {
+    border-bottom: 2px solid white;
+} */
 
 nav img {
     height: 50px;
@@ -60,10 +92,42 @@ nav img {
 .nav2 {
     display: flex;
     justify-content: center;
-    gap: 3vw;
     align-items: center;
-    width: 30%;
+    gap: 3vw;
+    background: black;
+    padding: 20px 0;
 }
+
+.text-wrapper {
+    height: 40px;
+    width: 80px;
+    overflow: hidden;
+    cursor: none;
+    position: relative;
+}
+
+.text-slide {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s ease;
+}
+
+.text-slide h4 {
+    margin: 0;
+    height: 40px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.text-wrapper:hover .text-slide {
+    transform: translateY(-40px);
+}
+
 
 nav .circle {
     height: 20px;
@@ -79,8 +143,8 @@ nav .circle {
     font-size: 8vw;
     font-weight: 400;
     color: white;
-    font-family: 'Satoshi';
-    margin-top: 12vw;
+    font-family: "Satoshi";
+
     margin-left: 6vw;
 }
 
@@ -88,9 +152,8 @@ nav .circle {
     font-size: 8vw;
     font-weight: 400;
     color: white;
-    font-family: 'Satoshi';
+    font-family: "Satoshi";
     margin-left: 20vw;
-
 }
 
 .page1 video {
@@ -105,65 +168,333 @@ nav .circle {
     min-height: 90vh;
     width: 100%;
     border-bottom: solid 1px #111;
+    position: relative;
+    z-index: 9;
 }
 
 .page2 h1 {
     font-size: 8vw;
     font-weight: 400;
-    font-family: 'Satoshi';
+    font-family: "Satoshi";
     margin-top: 10vw;
     margin-left: 6vw;
     color: #111;
 }
+
 .page2-container {
     display: flex;
     justify-content: space-between;
     padding: 2vw 5vw;
-    margin: 0; 
+    margin: 0;
     color: #111;
-  }
-  
-  .page2-left {
+}
+
+.page2-left {
     width: 37%;
-  }
-  
-  .page2-left h2 {
+}
+
+.page2-left h2 {
     font-size: 3.6vw;
     font-weight: 400;
     color: #111;
-  }
-  
-  .page2-right {
+}
+
+.page2-right {
     width: 30%;
     display: flex;
     flex-direction: column;
     gap: 2vw;
-  }
-  
-  .page2-right p {
+}
+
+.page2-right p {
     font-size: 28px;
     color: #111;
     line-height: 1.4;
-  }
-  
-  .page2-right button {
+}
+
+.page2-right button {
     width: 100%;
     background-color: hotpink;
     border-radius: 50px;
     border: none;
-    cursor: pointer;
-    padding: 12px 0; 
+    cursor: none;
+    padding: 12px 0;
     font-size: 18px;
     color: black;
     font-weight: 600;
     transition: all 0.3s ease;
-  }
-  
-  .page2-right button:hover {
+}
+
+.page2-right button:hover {
     background-color: deeppink;
-  }
-.page3
-{
+}
+
+.page3 {
+    min-height: 230vh;
+    width: 100%;
+    position: relative;
+    padding-top: 5vw;
+    z-index: 9;
+    border-bottom: #111 1px solid;
+}
+
+.page3 h1 {
+    font-size: 8vw;
+    font-weight: 400;
+    font-family: "Satoshi";
+    color: #111;
+    font-family: "Satoshi";
+    margin-left: 10vw;
+}
+
+.page3part1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: #111;
+    margin-top: 7vw;
+    padding: 2vw;
+}
+
+.page3part1 img {
+    height: 500px;
+    margin-top: 160px;
+}
+
+.page3 video {
+    width: 40vw;
+    height: 25vw;
+    object-fit: cover;
+}
+
+.page3part2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: #111;
+    margin-top: 10vw;
+    padding: 2vw;
+}
+
+.page3part2 img {
+    height: 500px;
+    width: auto;
+    margin-top: 160px;
+    margin-left: 10vw;
+    margin-top: 6vw;
+}
+
+.page3part2 video {
+    width: 35vw;
+    height: 30vw;
+    object-fit: cover;
+}
+
+.page4 {
     min-height: 100vh;
     width: 100%;
+    padding: 140px 100px;
+    margin-top: 5vw;
+    z-index: 9;
+    position: relative;
+    border-bottom: #fff 1px solid;
+}
+
+.elem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.elem .text {
+    height: 10vw;
+    overflow: hidden;
+}
+
+.elem h1 {
+    font-size: 7vw;
+    font-weight: 400;
+    font-family: "Satoshi";
+    transition: all 0.5s ease-out;
+}
+
+.elem img {
+    height: 500px;
+    width: auto;
+    position: absolute;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+    transform: translateY(10%) rotate(2deg);
+}
+
+.elem img:nth-child(1) {
+    left: 2%;
+}
+
+.elem img:nth-child(3) {
+    right: 10%;
+}
+
+.elem:hover h1 {
+    transform: translateY(-100%);
+    transition: all 0.5s ease-out;
+    cursor: none;
+}
+
+.elem:hover img {
+    opacity: 1;
+    transition: all 0.5s ease-out;
+    transform: translateY(0%) rotate(0deg);
+}
+
+.page5 {
+    min-height: 100vh;
+    width: 100%;
+    z-index: 9;
+    position: relative;
+    padding: 14vw 10vw;
+}
+
+.page5 h2 {
+    font-size: 4vw;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-family: "Satoshi";
+    margin-bottom: 5vh;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0vw 2vw;
+    height: 6vw;
+    border-top: 1px solid #fff;
+}
+
+.box #set {
+    border-bottom: 1px solid #fff;
+}
+
+footer {
+    height: 100vh;
+    width: 100%;
+    background-color: pink;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    font-family: "Satoshi";
+}
+
+footer .top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .top h1 {
+    font-size: 8vw;
+    font-weight: 400;
+    font-family: "Satoshi";
+    margin-bottom: 5vh;
+    margin-left: 5vw;
+}
+
+footer .top .circle {
+    height: 14vw;
+    width: 14vw;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5vw;
+}
+
+footer .top h3 {
+    font-size: 2vw;
+    font-weight: 400;
+    font-family: "Satoshi";
+}
+
+footer .bottom {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vw;
+}
+
+footer .bottom p {
+    font-size: 1vw;
+    font-weight: 400;
+    font-family: "Satoshi";
+    margin-left: 5vw;
+}
+
+
+
+footer .bottom .newsletter {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    margin-right: 5vw;
+}
+
+.inputGroup {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 1em 0 1em 0;
+    max-width: 190px;
+    position: relative;
+}
+
+.inputGroup input {
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid #ffffff;
+    background-color: transparent;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.inputGroup label {
+    font-size: 100%;
+    position: absolute;
+    left: 0;
+    background-color: transparent;
+    padding: 0.8em;
+    margin-left: 0.5em;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: rgb(100, 100, 100);
+}
+
+.inputGroup :is(input:focus, input:valid)~label {
+    transform: translateY(-50%) scale(.9);
+    margin: 0em;
+    margin-left: 1.3em;
+    padding: 0.4em;
+    background-color: #e8e8e8;
+}
+
+.inputGroup :is(input:focus, input:valid) {
+    border-color: rgb(150, 150, 200);
+}
+
+footer .bottom .newsletter-button {
+    font-size: 1vw;
+    font-weight: 400;
+    font-family: "Satoshi";
+    padding: 0.8vw 1.5vw;
+    border: none;
+    border-radius: 2vw;
+    background-color: white;
+    color: #111;
+    cursor: pointer;
 }

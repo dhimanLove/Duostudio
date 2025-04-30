@@ -1,3 +1,37 @@
+var cursor = document.querySelector(".cursor");
+var main = document.querySelector(".main");
+var video = document.querySelector(".page1 video");
+
+document.addEventListener("mousemove", function (dets) {
+  gsap.to(cursor, {
+    x: dets.x,
+    y: dets.y,
+    duration: 0.5,
+    ease: "power2.out",
+    scale: 1.2,
+    backgroundColor: "hotpink",
+    borderRadius: "50%",
+  });
+});
+
+// video.addEventListener("mouseenter", function () {
+//   gsap.to(cursor, {
+//     scale: 2,
+//     backgroundColor: "white",
+//     duration: 0.5,
+//     ease: "power2.out",
+//   });
+// });
+// video.addEventListener("mouseleave", function () {
+//   gsap.to(cursor, {
+//     scale: 1,
+//     backgroundColor: "hotpink",
+//     duration: 0.5,
+//     ease: "power2.out",
+//   });
+// }
+// );
+
 function init() {
   gsap.registerPlugin(ScrollTrigger);
   const locoScroll = new LocomotiveScroll({
@@ -29,13 +63,18 @@ function init() {
 
 init();
 
+gsap.from(".page1 h1, .page1 h2", {
+  opacity: 0,
+  duration: 1,
+  ease: "power2.out",
+  delay: 0.2,
+});
+
 var tl = gsap.timeline({
-  // hoga ye ke ab , ek jagah scroll trigger dala hai , and dusri jagah animation , and stored in tl var , for management , so now on instead of writing scrolll trigger for each animation , we can just call tl and it will work
   scrollTrigger: {
     trigger: ".page1 h1",
     scroller: ".main",
-    //markers: true,
-    top: "30%",
+    // markers: true,
     start: "top 27%",
     end: "top 0%",
     scrub: 3,
@@ -55,16 +94,15 @@ tl.to(
   {
     x: 100,
   },
-  "anim" // variable anim to sync both h1 and h2 animations together
+  "anim"
 );
-
 tl.to(
   ".page1 video",
   {
     width: "90%",
   },
   "anim"
-)
+);
 var tl2 = gsap.timeline({
   scrollTrigger: {
     trigger: ".page1 h1",
@@ -75,10 +113,98 @@ var tl2 = gsap.timeline({
     end: "top -120%",
     scrub: 3,
   },
-})
+});
 
 tl2.to(".main", {
   backgroundColor: "#fff",
-  color:"#000",
+  color: "#000",
   duration: 1,
-})
+});
+
+var tl3 = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".page1 h1",
+    scroller: ".main",
+    //markers: true,
+    start: "top -450%",
+    end: "top -470%",
+    scrub: 3,
+  },
+});
+
+tl3.to(".main", {
+  backgroundColor: "black",
+  color: "#ffffff",
+
+  duration: 1,
+});
+
+var boxes = document.querySelectorAll(".box");
+boxes.forEach(function (elem) {
+  elem.addEventListener("mouseenter", function () {
+    var att = elem.getAttribute("data-image");
+    cursor.style.width = "300px";
+    cursor.style.height = "250px";
+    cursor.style.borderRadius = "0";
+    cursor.style.backgroundImage = `url(${att})`;
+  });
+  elem.addEventListener("mouseleave", function () {
+    gsap.to(elem, {
+      backgroundColor: "black",
+      duration: 0.3,
+    });
+    cursor.style.width = "20px";
+    cursor.style.height = "20px";
+    cursor.style.backgroundImage = "none";
+  });
+  gsap.to(elem, {
+    scale: 1.1,
+    y: -10,
+    opacity: 1,
+    duration: 1,
+    scrollTrigger: {
+      trigger: elem,
+      scroller: ".main",
+      start: "top 70%",
+      end: "top 65%",
+      scrub: 3,
+    },
+  });
+});
+var purple = document.querySelector(".purple");
+var h4 = document.querySelectorAll(".nav2 h4");
+
+h4.forEach(function (nav) {
+  nav.addEventListener("mouseenter", function () {
+    purple.style.display = "block";
+    purple.style.opacity = "1";
+    purple.style.transform = "scale(1)"; 
+    purple.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+  });
+
+  nav.addEventListener("mouseleave", function () {
+    purple.style.opacity = "0";
+    purple.style.transform = "scale(0.95)";
+    setTimeout(() => {
+      purple.style.display = "none";
+    }, 400); // Match transition duration
+  });
+});
+
+var circle = document.querySelector("footer .top .circle");
+circle.addEventListener("mouseenter", function () {
+  gsap.to(circle, {
+   scale:1.08,
+    duration: 0.5,
+    ease: "elastic.out(1, 0.3)",
+  });
+});
+circle.addEventListener("mouseleave", function () {
+  gsap.to(circle, {
+
+   scale:1,
+    duration: 0.5,
+    scale: 1,
+    ease: "bounce.out",
+  });
+});
