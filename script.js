@@ -172,14 +172,30 @@ boxes.forEach(function (elem) {
   });
 });
 var purple = document.querySelector(".purple");
+var marqueeContent = document.querySelector(".marquee-content");
 var h4 = document.querySelectorAll(".nav2 h4");
 
 h4.forEach(function (nav) {
   nav.addEventListener("mouseenter", function () {
     purple.style.display = "block";
     purple.style.opacity = "1";
-    purple.style.transform = "scale(1)"; 
+    purple.style.transform = "scale(1)";
     purple.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+
+    var text = nav.textContent.toUpperCase();
+    if (text === "HOME") {
+      marqueeContent.textContent =
+        "HOME   WELCOME   EXPLORE   HOME   WELCOME   EXPLORE  ";
+    } else if (text === "WORK") {
+      marqueeContent.textContent =
+        "WORK   PROJECTS   PORTFOLIO   WORK   PROJECTS   PORTFOLIO  ";
+    } else if (text === "STUDIO") {
+      marqueeContent.textContent =
+        "STUDIO   CREATIVE   DESIGN   STUDIO   CREATIVE   DESIGN  ";
+    } else if (text === "CONTACT") {
+      marqueeContent.textContent =
+        "CONTACT   CONNECT   REACH   CONTACT   CONNECT   REACH  ";
+    }
   });
 
   nav.addEventListener("mouseleave", function () {
@@ -187,22 +203,21 @@ h4.forEach(function (nav) {
     purple.style.transform = "scale(0.95)";
     setTimeout(() => {
       purple.style.display = "none";
-    }, 400); // Match transition duration
+      marqueeContent.textContent = "";
+    }, 400);
   });
 });
-
 var circle = document.querySelector("footer .top .circle");
 circle.addEventListener("mouseenter", function () {
   gsap.to(circle, {
-   scale:1.08,
+    scale: 1.1,
     duration: 0.5,
     ease: "elastic.out(1, 0.3)",
   });
 });
 circle.addEventListener("mouseleave", function () {
   gsap.to(circle, {
-
-   scale:1,
+    scale: 1,
     duration: 0.5,
     scale: 1,
     ease: "bounce.out",

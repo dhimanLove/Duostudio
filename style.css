@@ -11,11 +11,16 @@
     scroll-behavior: smooth;
 }
 
+*::selection {
+    mix-blend-mode: difference;
+    background-color: #b075b3;
+    color: white;
+}
+
 html,
 body {
     height: 100%;
     width: 100%;
-
 }
 
 .cursor {
@@ -40,7 +45,35 @@ body {
     position: fixed;
     background-color: #b075b3;
     display: none;
+    opacity: 0;
     transition: opacity 0.3s ease;
+}
+
+.marquee {
+    position: absolute;
+    top: 40vh;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-block;
+    font-size: 8vw;
+    font-weight: 400;
+    font-family: "Satoshi", sans-serif;
+    color: white;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .main {
@@ -80,10 +113,6 @@ nav h4:hover {
     border-bottom: 2px solid white;
 }
 
-/* nav h4:nth-child(1) {
-    border-bottom: 2px solid white;
-} */
-
 nav img {
     height: 50px;
     width: 50px;
@@ -121,13 +150,11 @@ nav img {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .text-wrapper:hover .text-slide {
     transform: translateY(-40px);
 }
-
 
 nav .circle {
     height: 20px;
@@ -144,7 +171,6 @@ nav .circle {
     font-weight: 400;
     color: white;
     font-family: "Satoshi";
-
     margin-left: 6vw;
 }
 
@@ -243,7 +269,6 @@ nav .circle {
     font-weight: 400;
     font-family: "Satoshi";
     color: #111;
-    font-family: "Satoshi";
     margin-left: 10vw;
 }
 
@@ -279,7 +304,6 @@ nav .circle {
 .page3part2 img {
     height: 500px;
     width: auto;
-    margin-top: 160px;
     margin-left: 10vw;
     margin-top: 6vw;
 }
@@ -437,8 +461,6 @@ footer .bottom p {
     margin-left: 5vw;
 }
 
-
-
 footer .bottom .newsletter {
     display: flex;
     align-items: center;
@@ -497,4 +519,384 @@ footer .bottom .newsletter-button {
     background-color: white;
     color: #111;
     cursor: pointer;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+    nav {
+        padding: 0 20px;
+        height: 8vh;
+    }
+
+    nav h4 {
+        font-size: 1rem;
+    }
+
+    nav img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .nav2 {
+        gap: 2vw;
+        padding: 15px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .text-wrapper {
+        width: 70px;
+        height: 35px;
+    }
+
+    .text-slide h4 {
+        font-size: 0.9rem;
+        height: 35px;
+    }
+
+    .page1 h1,
+    .page1 h2 {
+        font-size: 9vw;
+        margin-left: 4vw;
+    }
+
+    .page1 video {
+        width: 75%;
+    }
+
+    .page2-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 3vw 4vw;
+    }
+
+    .page2-left,
+    .page2-right {
+        width: 100%;
+    }
+
+    .page2-left h2 {
+        font-size: 4.5vw;
+    }
+
+    .page2-right p {
+        font-size: 24px;
+    }
+
+    .page3part1,
+    .page3part2 {
+        flex-direction: column;
+        align-items: center;
+        padding: 3vw;
+    }
+
+    .page3part1 img,
+    .page3part2 img {
+        height: 400px;
+        margin-top: 20px;
+        margin-left: 0;
+    }
+
+    .page3 video {
+        width: 70vw;
+        height: auto;
+    }
+
+    .page4 {
+        padding: 100px 40px;
+    }
+
+    .elem img {
+        height: 400px;
+    }
+
+    footer .top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer .top h1 {
+        font-size: 9vw;
+        margin-left: 0;
+    }
+
+    footer .top .circle {
+        height: 18vw;
+        width: 18vw;
+        margin: 3vw;
+    }
+
+    footer .top h3 {
+        font-size: 2.5vw;
+    }
+
+    footer .bottom {
+        flex-direction: column;
+        align-items: center;
+        padding: 3vw;
+        gap: 2vw;
+    }
+
+    footer .bottom p {
+        font-size: 1.5vw;
+        margin-left: 0;
+    }
+
+    footer .bottom .newsletter {
+        margin-right: 0;
+        flex-direction: column;
+        gap: 2vw;
+    }
+
+    footer .bottom .newsletter-button {
+        font-size: 1.5vw;
+        padding: 1vw 2vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .cursor {
+        display: none; /* Disable custom cursor on smaller screens */
+    }
+
+    .main {
+        cursor: default; /* Restore default cursor */
+    }
+
+    nav {
+        height: auto;
+        padding: 10px 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5vw;
+    }
+
+    nav h4 {
+        font-size: 0.95rem;
+    }
+
+    nav img {
+        height: 35px;
+        width: 35px;
+    }
+
+    .nav2 {
+        flex-direction: column;
+        gap: 2.5vw;
+        padding: 10px 0;
+    }
+
+    .text-wrapper {
+        width: 65px;
+        height: 32px;
+    }
+
+    .text-slide h4 {
+        font-size: 0.85rem;
+        height: 32px;
+    }
+
+    .page1 {
+        padding-top: 15vw;
+    }
+
+    .page1 h1,
+    .page1 h2 {
+        font-size: 10vw;
+        margin-left: 3vw;
+    }
+
+    .page1 video {
+        width: 85%;
+    }
+
+    .page2 h1 {
+        font-size: 9vw;
+        margin-left: 3vw;
+    }
+
+    .page2-left h2 {
+        font-size: 5vw;
+    }
+
+    .page2-right p {
+        font-size: 20px;
+    }
+
+    .page3 h1 {
+        font-size: 9vw;
+        margin-left: 3vw;
+    }
+
+    .page3part1 img,
+    .page3part2 img {
+        height: 300px;
+    }
+
+    .page3 video {
+        width: 80vw;
+    }
+
+    .page4 {
+        padding: 60px 20px;
+    }
+
+    .elem h1 {
+        font-size: 8vw;
+    }
+
+    .elem img {
+        height: 300px;
+    }
+
+    .page5 {
+        padding: 15vw 5vw;
+    }
+
+    .page5 h2 {
+        font-size: 5vw;
+    }
+
+    .box {
+        height: 7vw;
+        padding: 0 3vw;
+    }
+
+    footer {
+        height: auto;
+        padding: 5vw;
+    }
+
+    footer .top h1 {
+        font-size: 10vw;
+    }
+
+    footer .top .circle {
+        height: 20vw;
+        width: 20vw;
+    }
+
+    footer .top h3 {
+        font-size: 3vw;
+    }
+
+    footer .bottom p {
+        font-size: 2vw;
+    }
+
+    footer .bottom .newsletter-button {
+        font-size: 2vw;
+        padding: 1.5vw 3vw;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 8px 10px;
+        gap: 2vw;
+    }
+
+    nav h4 {
+        font-size: 0.9rem;
+    }
+
+    nav img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .nav2 {
+        gap: 3vw;
+    }
+
+    .text-wrapper {
+        width: 60px;
+        height: 30px;
+    }
+
+    .text-slide h4 {
+        font-size: 0.8rem;
+        height: 30px;
+    }
+
+    .page1 h1,
+    .page1 h2 {
+        font-size: 11vw;
+    }
+
+    .page1 video {
+        width: 90%;
+    }
+
+    .page2 h1 {
+        font-size: 10vw;
+    }
+
+    .page2-left h2 {
+        font-size: 6vw;
+    }
+
+    .page2-right p {
+        font-size: 18px;
+    }
+
+    .page3 h1 {
+        font-size: 10vw;
+    }
+
+    .page3part1 img,
+    .page3part2 img {
+        height: 250px;
+    }
+
+    .page3 video {
+        width: 90vw;
+    }
+
+    .page4 {
+        padding: 40px 15px;
+    }
+
+    .elem h1 {
+        font-size: 9vw;
+    }
+
+    .elem img {
+        height: 250px;
+    }
+
+    .page5 h2 {
+        font-size: 6vw;
+    }
+
+    .box {
+        height: 8vw;
+    }
+
+    footer .top h1 {
+        font-size: 11vw;
+    }
+
+    footer .top .circle {
+        height: 25vw;
+        width: 25vw;
+    }
+
+    footer .top h3 {
+        font-size: 3.5vw;
+    }
+
+    footer .bottom p {
+        font-size: 3vw;
+    }
+
+    .inputGroup {
+        max-width: 150px;
+    }
+
+    footer .bottom .newsletter-button {
+        font-size: 3vw;
+        padding: 2vw 4vw;
+    }
 }
