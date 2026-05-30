@@ -21,6 +21,7 @@ html,
 body {
     height: 100%;
     width: 100%;
+    overflow-x: hidden;
 }
 
 .cursor {
@@ -90,17 +91,32 @@ body {
 }
 
 nav {
-    height: 7vh;
+    height: auto;
+    min-height: 7vh;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 30px;
+    padding: 10px 20px;
     color: white;
     cursor: none;
     position: fixed;
     mix-blend-mode: difference;
     z-index: 102;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    .nav2 {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 nav h4 {
@@ -284,6 +300,8 @@ nav .circle {
 .page3part1 img {
     height: 500px;
     margin-top: 160px;
+    max-width: 100%;
+    height: auto;
 }
 
 .page3 video {
@@ -306,6 +324,8 @@ nav .circle {
     width: auto;
     margin-left: 10vw;
     margin-top: 6vw;
+    max-width: 100%;
+    height: auto;
 }
 
 .page3part2 video {
@@ -351,6 +371,14 @@ nav .circle {
     opacity: 0;
     transition: all 0.5s ease-out;
     transform: translateY(10%) rotate(2deg);
+    max-width: 40%;
+}
+
+@media (max-width: 768px) {
+    .elem img {
+        max-width: 35%;
+        height: auto;
+    }
 }
 
 .elem img:nth-child(1) {
@@ -403,7 +431,8 @@ nav .circle {
 }
 
 footer {
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     width: 100%;
     background-color: pink;
     color: #111;
@@ -607,7 +636,8 @@ footer .bottom .newsletter-button {
     }
 
     .elem img {
-        height: 400px;
+        height: auto;
+        max-width: 35%;
     }
 
     footer .top {
@@ -747,7 +777,8 @@ footer .bottom .newsletter-button {
     }
 
     .elem img {
-        height: 300px;
+        height: auto;
+        max-width: 30%;
     }
 
     .page5 {
@@ -863,7 +894,8 @@ footer .bottom .newsletter-button {
     }
 
     .elem img {
-        height: 250px;
+        height: auto;
+        max-width: 25%;
     }
 
     .page5 h2 {
